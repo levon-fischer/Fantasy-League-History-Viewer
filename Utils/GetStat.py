@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import PrestigeData
+from Utils import PrestigeData
 
 
 # INPUT: LHDB dataframe
