@@ -5,7 +5,7 @@ from sleeper_wrapper import League
 # INPUT: a dictionary of all the leagues years ({'year': 'League ID'})
 # OUTPUT: a list of all the owners
 @st.cache
-def get_all_time_owners(league_ids):
+def get_all_time_owners(league_ids: dict) -> list:
     owners = []
     for year in league_ids:
         season = League(league_ids[year])
@@ -22,7 +22,7 @@ def get_all_time_owners(league_ids):
 # INPUT: dictionary of all the leagues years ({'year': 'League ID'})
 # OUTPUT: dictionary of all the users mapped to their names ({'UID': 'username'})
 @st.cache
-def get_all_time_users(league_ids):
+def get_all_time_users(league_ids: dict) -> dict:
     mapped_users = {}
     for year in league_ids:
         season = League(league_ids[year])
@@ -38,7 +38,7 @@ def get_all_time_users(league_ids):
     return mapped_users
 
 
-def list_of_gms(users):
+def list_of_gms(users: dict) -> list:
     usernames = []
     for uid in users:
         usernames.append(users[uid])
