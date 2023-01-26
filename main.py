@@ -92,11 +92,11 @@ year = col1.selectbox('YEAR', years)
 week = col2.selectbox('WEEK', weeks)
 game_type = col3.multiselect('Game Type', ['Regular', 'Playoffs', 'Toilet Bowl', 'All'])
 
-#filter = (matchups_df['year'] == year) and (matchups_df['week'] == week)
-#filtered_df = matchups_df.loc[(matchups_df['year'] == year) and (matchups_df['week'] == week)]
+filt = ((matchups_df['year'] == year) & (matchups_df['week'] == week))
+filtered_df = matchups_df.loc[filt]
 
 ####################
 ## Matchup Table ###
 ####################
 
-st.dataframe(matchups_df, use_container_width=True)
+st.dataframe(filtered_df, use_container_width=True)

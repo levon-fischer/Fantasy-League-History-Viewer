@@ -6,7 +6,7 @@ from sleeper_wrapper import League
 # INPUT: the current season's league ID (str or int)
 # OUTPUT: a dictionary of all the leagues years ({'year': 'league ID'})
 @st.cache
-def all_league_ids(current_league_id):
+def all_league_ids(current_league_id: str) -> dict:
     more_years = True
     league_ids = {}
     while more_years:
@@ -24,7 +24,7 @@ def all_league_ids(current_league_id):
 # INPUT: dictionary of all the leagues years ({'year': 'League ID'})
 # OUTPUT: dictionary of each matchup for the league (can be converted to dataframe)
 @st.cache
-def alltime_rg_matchups(league_ids):
+def alltime_rg_matchups(league_ids: dict) -> dict:
     # create an empty list for each column of the result dataframe
     year_lst, week_lst, user1, tm1, tm1_score, user2, tm2, tm2_score, g_type = [], [], [], [], [], [], [], [], []
 
@@ -104,7 +104,7 @@ def alltime_rg_matchups(league_ids):
 # INPUT: dictionary of all the leagues years ({'year': 'League ID'})
 # OUTPUT: dictionary of each playoff matchup for the league (can be converted to dataframe)
 @st.cache
-def alltime_po_matchups(league_ids):
+def alltime_po_matchups(league_ids: dict) -> dict:
     # create an empty list for each column of the result dataframe
     year_lst, week_lst, user1, tm1, tm1_score, user2, tm2, tm2_score, g_type = [], [], [], [], [], [], [], [], []
 
@@ -190,8 +190,11 @@ def alltime_po_matchups(league_ids):
 # INPUT: 2 DataFrames (all regular season and all post season matchups)
 # OUTPUT: a DataFrame with all the leagues matchups
 @st.cache
-def all_matchups(reg_szn, post_szn):
+def all_matchups(reg_szn: pd.DataFrame,
+                 post_szn: pd.DataFrame) -> pd.DataFrame:
+
     all_matchups_df = pd.concat([reg_szn, post_szn], ignore_index=True)
+
     return all_matchups_df
 
 
@@ -199,7 +202,7 @@ def all_matchups(reg_szn, post_szn):
 # OUTPUT: DataFrame with each team's individual score for each matchup
 #             Columns: ['uid', 'score']
 @st.cache
-def ind_matchup_scores(df):
+def ind_matchup_scores(df: pd.DataFrame) -> pd.DataFrame:
     # take the LHDB and get just a single list of all the scores for each user
     cols1 = df[['year', 'week', 'uid1', 'team1', 'team1_score']]
     cols2 = df[['year', 'week', 'uid2', 'team2', 'team2_score']]
