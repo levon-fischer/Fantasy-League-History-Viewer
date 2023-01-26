@@ -1,9 +1,6 @@
 import streamlit as st
 import pandas as pd
-import PrestigeData
-import Mapping
-import GetStat
-
+from Utils import GetStat, Mapping, PrestigeData
 
 ##################
 ## Page Config ###
